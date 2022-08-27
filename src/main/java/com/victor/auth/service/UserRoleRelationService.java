@@ -1,7 +1,9 @@
 package com.victor.auth.service;
 
-import com.victor.auth.dao.entity.UserRoleRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.victor.auth.dao.entity.UserRoleRelation;
+import com.victor.auth.model.dto.UserRoleDTO;
+import com.victor.auth.model.vo.UserRoleRelationVo;
 
 /**
  * <p>
@@ -13,4 +15,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserRoleRelationService extends IService<UserRoleRelation> {
 
+    /**
+     * 保存或修改用户角色列表
+     *
+     * @param userRoleDTO
+     */
+    void saveOrUpdateUserRoleList(UserRoleDTO userRoleDTO);
+
+    /**
+     * 查询用户角色列表
+     *
+     * @param userId
+     * @return
+     */
+    UserRoleRelationVo queryRoleList(Long userId);
 }

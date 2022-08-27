@@ -41,7 +41,7 @@ public class AutoGenerator {
                     builder.parent("com.victor.auth") // 设置父包名
 //                            .moduleName("") // 设置模块名
                             .entity("dao.entity") //设置entity输出包名
-                            .controller("controller") //设置controller输出包名
+                            .controller("controller.v1") //设置controller输出包名
                             .service("service") //设置service输出包名
                             .serviceImpl("service.impl") //设置service impl输出包名
                             .mapper("dao.mapper") //设置mapper输出包名
