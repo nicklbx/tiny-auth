@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * HealthCheckController
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 14:04
  */
 @Api(tags = "健康检查")
@@ -23,17 +23,17 @@ public class HealthCheckController {
 
     @ApiOperation(value = "health-check")
     @GetMapping("/health-check")
-    public Map<String,Object> ok(){
+    public Map<String, Object> ok() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("status", "ok");
         map.put("time", new Date());
         return map;
     }
 
-    @ApiImplicitParam(name = "name",value = "姓名",required = true)
+    @ApiImplicitParam(name = "name", value = "姓名", required = true)
     @ApiOperation(value = "向客人问好")
     @GetMapping("/sayHi")
-    public ResponseEntity<String> sayHi(@RequestParam(value = "name")String name){
-        return ResponseEntity.ok("Hi:"+name);
+    public ResponseEntity<String> sayHi(@RequestParam(value = "name") String name) {
+        return ResponseEntity.ok("Hi:" + name);
     }
 }

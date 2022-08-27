@@ -11,7 +11,7 @@ import org.springframework.beans.BeanUtils;
 /**
  * BeanCopyUtil
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 17:02
  */
 @Slf4j

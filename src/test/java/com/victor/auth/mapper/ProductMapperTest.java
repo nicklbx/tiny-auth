@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * ProductMapperTest
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/26 23:25
  */
 public class ProductMapperTest extends BaseTest {
@@ -21,7 +21,7 @@ public class ProductMapperTest extends BaseTest {
     private ProductMapper productMapper;
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
         Product product = new Product();
         product.setName("小米手机");
         System.out.println(productMapper.insert(product));
@@ -29,7 +29,7 @@ public class ProductMapperTest extends BaseTest {
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         Product product = new Product();
         product.setName("华为手机");
 //        product.setProductId(6L);
@@ -40,17 +40,16 @@ public class ProductMapperTest extends BaseTest {
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         productMapper.delete(new QueryWrapper<Product>().eq("product_id", "6"));
     }
 
 
     @Test
-    public void testPage(){
-        Page<Product> page = new Page<>(3,5);
+    public void testPage() {
+        Page<Product> page = new Page<>(3, 5);
         Page<Product> productPage = productMapper.selectPage(page, null);
         List<Product> records = productPage.getRecords();
-
 
         System.out.println(productPage.getRecords());
         System.out.println(productPage.getCurrent());
@@ -59,8 +58,6 @@ public class ProductMapperTest extends BaseTest {
         System.out.println(productPage.hasNext());
 
     }
-
-
 
 
 }

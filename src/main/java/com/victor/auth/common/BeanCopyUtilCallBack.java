@@ -3,7 +3,7 @@ package com.victor.auth.common;
 /**
  * BeanCopyUtilCallBack
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 17:04
  */
 @FunctionalInterface

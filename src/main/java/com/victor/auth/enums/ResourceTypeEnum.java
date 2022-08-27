@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * ResourceTypeEnum
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 20:19
  */
 @Getter

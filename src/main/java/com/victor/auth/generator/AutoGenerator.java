@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig.Builder;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.baomidou.mybatisplus.generator.fill.Column;
 import com.baomidou.mybatisplus.generator.fill.Property;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,18 +15,19 @@ import java.util.function.Consumer;
 /**
  * AuthGenerator
  * 代码自动生成
- * @Author nicklbx
+ *
+ * @Author victor
  * @Date 2022/8/26 22:39
  */
 public class AutoGenerator {
 
-    private static final String URL="jdbc:mysql://localhost:3306/victor_auth?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
-    private static final String USER_NAME="root";
-    private static final String PASSWORD="123456";
+    private static final String URL = "jdbc:mysql://localhost:3306/victor_auth?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "123456";
 
 
     public static void main(String[] args) {
-        FastAutoGenerator.create(URL,USER_NAME,PASSWORD)
+        FastAutoGenerator.create(URL, USER_NAME, PASSWORD)
                 //全局配置
                 .globalConfig(builder -> {
                     builder.author("victor") // 设置作者
@@ -67,7 +67,8 @@ public class AutoGenerator {
                     builder.entityBuilder()
                             .fileOverride() //覆盖entity文件
                             .addTableFills(new Property("createdAt", FieldFill.INSERT)) //insert时填充created_at
-                            .addTableFills(new Property("updatedAt", FieldFill.INSERT_UPDATE)) //insert update时填充updated_at
+                            .addTableFills(
+                                    new Property("updatedAt", FieldFill.INSERT_UPDATE)) //insert update时填充updated_at
                             .addTableFills(new Property("isDelete", FieldFill.INSERT)) //insert时填充is_delete为初始值
 //                            .addTableFills(new Column("created_at", FieldFill.INSERT)) //new Column(下划线字段名)
 //                            .addTableFills(new Column("updated_at", FieldFill.INSERT_UPDATE))

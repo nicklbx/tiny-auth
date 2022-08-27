@@ -1,5 +1,6 @@
 package com.victor.auth.model.dto;
 
+import com.victor.auth.common.constraints.Insert;
 import com.victor.auth.common.constraints.Update;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
@@ -26,11 +27,13 @@ public class UserDTO implements Serializable {
     /**
      * 用户名
      */
+    @NotNull(message = "用户名不为空", groups = {Insert.class})
     private String userName;
 
     /**
      * 密码
      */
+    @NotNull(message = "密码不为空", groups = {Insert.class})
     private String password;
 
     /**

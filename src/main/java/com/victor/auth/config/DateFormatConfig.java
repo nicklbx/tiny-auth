@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * DateFormatConfig
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 19:51
  */
 @JsonComponent

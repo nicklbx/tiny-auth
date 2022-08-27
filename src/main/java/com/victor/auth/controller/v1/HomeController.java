@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * HomeController
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 16:55
  */
 @RestController

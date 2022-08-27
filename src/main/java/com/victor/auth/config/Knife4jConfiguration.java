@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 /**
  * Knife4jConfiguration
  *
- * @Author nicklbx
+ * @Author victor
  * @Date 2022/8/27 14:01
  */
 @Configuration
@@ -22,7 +22,7 @@ public class Knife4jConfiguration {
     @Bean(value = "dockerBean")
     public Docket dockerBean() {
         //指定使用Swagger2规范
-        Docket docket=new Docket(DocumentationType.SWAGGER_2)
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
                         //描述字段支持Markdown语法
                         .description("# tiny auth RESTful APIs")
