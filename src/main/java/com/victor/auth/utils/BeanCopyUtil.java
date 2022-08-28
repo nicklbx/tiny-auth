@@ -1,6 +1,8 @@
 package com.victor.auth.utils;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.victor.auth.common.BeanCopyUtilCallBack;
+import com.victor.auth.model.vo.PageVo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -59,6 +61,30 @@ public class BeanCopyUtil extends BeanUtils {
     public static <S, T> List<T> copyListProperties(List<S> sourceList, Supplier<T> target) {
         return copyListProperties(sourceList, target, null);
     }
+
+    /**
+     * @param page
+     * @param target
+     * @param <S>
+     * @param <T>
+     * @return
+     */
+    public static <S, T> PageVo<T> copyPageProperties(Page<S> page, Supplier<T> target) {
+        if (page == null) {
+            return null;
+        }
+        //分页数据列表
+        List<S> sourceList = page.getRecords();
+        //返回分页VO
+        PageVo<T> pageVo = new PageVo<>();
+        //DO列表拷贝VO列表
+        List<T> vos = copyListProperties(page.getRecords(), target);
+        //拷贝通用分页参数
+        copyProperties(page, pageVo);
+        pageVo.setList(vos);
+        return pageVo;
+    }
+
 
     /**
      * @param sourceList

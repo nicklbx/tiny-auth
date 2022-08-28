@@ -1,6 +1,7 @@
 package com.victor.auth.model.vo;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.Data;
 import lombok.ToString;
 
@@ -17,26 +18,22 @@ public class PageVo<T> {
     /**
      * 总条数
      */
+    @JsonProperty("total")
     private long total;
     /**
-     * 总页数
+     * 当前页数据条数
      */
-    private long totalPages;
+    @JsonProperty("pageSize")
+    private long size;
     /**
      * 当前页数
      */
-    private long currentPage;
+    @JsonProperty("pageNo")
+    private long current;
     /**
      * 记录列表
      */
-    private T list;
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createdAt;
+    @JsonProperty("list")
+    private List<T> list;
 
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updatedAt;
 }

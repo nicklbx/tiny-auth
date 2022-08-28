@@ -1,25 +1,28 @@
 package com.victor.auth.controller.v1;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.victor.auth.common.constraints.Update;
 import com.victor.auth.common.utils.R;
 import com.victor.auth.common.vo.ApiRespVo;
 import com.victor.auth.dao.entity.Product;
 import com.victor.auth.model.dto.ProductDTO;
+import com.victor.auth.model.vo.PageVo;
 import com.victor.auth.model.vo.ProductVo;
 import com.victor.auth.service.ProductService;
 import com.victor.auth.utils.BeanCopyUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -34,23 +37,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/product")
 @Validated
+@CrossOrigin
 public class ProductController {
 
     @Resource
     private ProductService productService;
 
     /**
-     * 查看所有商品
+     * 查看商品列表
      *
      * @return
      */
     @ApiOperation(value = "查看所有商品")
-    @GetMapping("/listAllProduct")
-    public ApiRespVo listProduct() {
-        List<Product> list = productService.list();
-        List<ProductVo> productVos = BeanCopyUtil.copyListProperties(list, ProductVo::new);
-//        BeanCopyUtil.copyListProperties(list, ProductVo.class);
-        return R.ok(productVos);
+    @GetMapping("/listProduct")
+    public ApiRespVo listProduct(@RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "100") int pageSize,
+            @RequestParam(required = false) String sort) {
+        Page<Product> productPage = new Page<>(pageNo, pageSize);
+        Page<Product> page = productService.page(productPage);
+        //分页数据封装
+        PageVo<ProductVo> pageVo = BeanCopyUtil.copyPageProperties(page, ProductVo::new);
+        return R.ok(pageVo);
     }
 
     /**

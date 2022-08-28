@@ -1,5 +1,6 @@
 package com.victor.auth.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.victor.auth.common.constraints.Insert;
 import com.victor.auth.common.constraints.Update;
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public class UserDTO implements Serializable {
      * 用户名
      */
     @NotNull(message = "用户名不为空", groups = {Insert.class})
+    @JsonProperty("username")
     private String userName;
 
     /**

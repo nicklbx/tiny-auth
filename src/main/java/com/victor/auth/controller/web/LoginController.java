@@ -6,11 +6,16 @@ import com.victor.auth.common.utils.R;
 import com.victor.auth.common.vo.ApiRespVo;
 import com.victor.auth.model.dto.UserDTO;
 import io.swagger.annotations.ApiOperation;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/web")
+@CrossOrigin("*")
 public class LoginController {
 
     /**
@@ -37,10 +43,26 @@ public class LoginController {
         if (userName.equals("admin")
                 && password.equals("123456")) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("token", "jwtToken");
+            map.put("token", "admin-token");
             return R.ok(map);
         }
         return R.failed(CodeEnum.AUTH_FAILED.getCode(), "登录失败");
+    }
+
+    /**
+     * 用户信息接口
+     *
+     * @return
+     */
+    @ApiOperation(value = "用户信息")
+    @GetMapping("/info")
+    public ApiRespVo info(@RequestParam String token) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("avatar", "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg");
+        map.put("introduction", "I'm a super administrator");
+        map.put("name", "Super Admin");
+        map.put("roles", Arrays.asList(new String[]{"admin"}));
+        return R.ok(map);
     }
 
 
