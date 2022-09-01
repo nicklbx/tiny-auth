@@ -1,5 +1,6 @@
 package com.victor.auth.controller.v1;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.victor.auth.common.constraints.Update;
 import com.victor.auth.common.utils.R;
@@ -52,9 +53,11 @@ public class ProductController {
     @GetMapping("/listProduct")
     public ApiRespVo listProduct(@RequestParam(defaultValue = "1") int pageNo,
             @RequestParam(defaultValue = "100") int pageSize,
-            @RequestParam(required = false) String sort) {
+            ProductDTO productDTO) {
+        Product product = new Product();
+        BeanCopyUtil.copyProperties(productDTO, product);
         Page<Product> productPage = new Page<>(pageNo, pageSize);
-        Page<Product> page = productService.page(productPage);
+        Page<Product> page = productService.page(productPage, new QueryWrapper<Product>(product));
         //分页数据封装
         PageVo<ProductVo> pageVo = BeanCopyUtil.copyPageProperties(page, ProductVo::new);
         return R.ok(pageVo);
